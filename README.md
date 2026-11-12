@@ -22,7 +22,7 @@ Accounts you connect are read through Meta's official API with the permissions y
 
 ### Claude (desktop and web)
 
-Settings → Connectors → Add custom connector. Paste `https://mcp.owlstat.io/mcp` and sign in, or choose API key authentication and paste your key.
+Settings → Connectors → Add custom connector. Name it OwlStat, paste `https://mcp.owlstat.io/mcp` and leave the advanced settings empty. Press Connect: OwlStat's authorization page opens, paste your API key there and approve.
 
 ### Claude Code
 
@@ -65,7 +65,7 @@ Or keep the key out of the file: `codex mcp add owlstat --url https://mcp.owlsta
 
 ### ChatGPT
 
-Add a custom connector pointing at `https://mcp.owlstat.io/mcp`. MCP support in ChatGPT depends on your plan.
+Plugins → Add → Add custom MCP server. Name it OwlStat, paste `https://mcp.owlstat.io/mcp`, choose OAuth, tick the risk notice and choose Create as a plugin. OwlStat's authorization page opens: paste your API key there and approve. Then pick OwlStat from the + menu in a new chat.
 
 ### Any other client
 
