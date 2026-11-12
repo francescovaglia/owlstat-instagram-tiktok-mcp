@@ -4,7 +4,7 @@ OwlStat's remote MCP server connects Claude, ChatGPT, Cursor, Codex and any othe
 
 - **Endpoint:** `https://mcp.owlstat.io/mcp` (Streamable HTTP)
 - **Auth:** OAuth 2.1 with dynamic client registration, or your OwlStat API key as a Bearer token
-- **Tools:** 31 (Instagram, TikTok, short-form video, alerts, Create and Schedule)
+- **Tools:** 32 (Instagram, TikTok, short-form video, alerts, Create and Schedule)
 - **Docs:** [owlstat.io/instagram-mcp](https://owlstat.io/instagram-mcp/)
 
 This repository holds documentation and the registry manifest only. The server is hosted by OwlStat: there is nothing to install.
@@ -57,8 +57,11 @@ claude mcp add owlstat \
 
 ```toml
 [mcp_servers.owlstat]
-url = "https://mcp.owlstat.io/mcp?apiKey=YOUR_API_KEY"
+url = "https://mcp.owlstat.io/mcp"
+http_headers = { Authorization = "Bearer YOUR_API_KEY" }
 ```
+
+Or keep the key out of the file: `codex mcp add owlstat --url https://mcp.owlstat.io/mcp --bearer-token-env-var OWLSTAT_API_KEY`.
 
 ### ChatGPT
 
@@ -86,7 +89,7 @@ Point it at `https://mcp.owlstat.io/mcp` over Streamable HTTP with `Authorizatio
 | `get_reels_analytics` | Analyze Instagram Reels performance with viral velocity, engagement rates, and view metrics. | read-only |
 | `get_post_insights` | Track how a specific post's reach, views, saves, and shares change over time. | read-only |
 | `get_growth_summary` | Get a computed growth summary with follower projections, engagement trends, and posting frequency. | read-only |
-| `manage_workspace` | Add, remove, or list Instagram accounts in your tracked workspace. | changes data, can remove |
+| `manage_workspace` | Start or stop tracking an Instagram account in the OwlStat workspace. To see the tracked accounts, use list_monitored_accounts. | changes data, can remove |
 
 ### TikTok
 
@@ -101,7 +104,7 @@ Point it at `https://mcp.owlstat.io/mcp` over Streamable HTTP with `Authorizatio
 | `get_tiktok_content_breakdown` | Analyze TikTok content performance broken down by format (video vs slideshow), sponsorship, and duration buckets, showing which type drives the most engagement. | read-only |
 | `generate_tiktok_report` | Generate a comprehensive TikTok analytics report for an account with executive summary, growth analysis, engagement metrics, top videos, and recommendations. | read-only |
 | `list_tiktok_monitored_accounts` | List all TikTok accounts currently being monitored in your OwlStat workspace. | read-only |
-| `manage_tiktok_workspace` | Add, remove, or list TikTok accounts in your tracked workspace. | changes data, can remove |
+| `manage_tiktok_workspace` | Start or stop tracking a TikTok account in the OwlStat workspace. To see the tracked accounts, use list_tiktok_monitored_accounts. | changes data, can remove |
 
 ### Short-form video (Reels, Shorts, TikTok)
 
@@ -124,7 +127,8 @@ Point it at `https://mcp.owlstat.io/mcp` over Streamable HTTP with `Authorizatio
 | `create_carousel` | Make an Instagram carousel in OwlStat Create, in the brand's own style (its colors, fonts and logo, and the look of its posts), from an article link or from facts written in the conversation. Every fact on the slides is… | changes data |
 | `get_carousel` | A carousel made in OwlStat Create: whether it is still being made, and once it is done its slides (as images), headline and caption, the text of every slide (to change words with edit_carousel), plus the link to edit it in… | read-only |
 | `edit_carousel` | Change words on a finished carousel from OwlStat Create: for each edit, the slide number, the old text exactly as get_carousel shows it (a whole line, or part of one) and the new text. A whole line keeps its style, and *word*… | changes data, can remove |
-| `manage_schedule` | The user's OwlStat post schedule for Instagram. "list": what is planned in a period, for every account or one, with each post's id, time and state. "add": put a finished carousel (from get_carousel) on an account, at a time or… | changes data, can remove |
+| `list_schedule` | What is planned on the user's OwlStat post schedule for Instagram in a period, for every account or one: each post's id, time, state and, once published, its Instagram link. | read-only |
+| `manage_schedule` | Change the user's OwlStat post schedule for Instagram: add a finished carousel, move a post, rewrite a caption, or cancel a post that is still waiting. Nothing goes out until the user approves it on the Schedule page. | changes data, can remove |
 
 ## Example questions
 
