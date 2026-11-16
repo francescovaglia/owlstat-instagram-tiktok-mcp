@@ -3,8 +3,12 @@
   "name": "io.owlstat/owlstat",
   "title": "OwlStat: Instagram & TikTok Analytics",
   "description": "Instagram and TikTok analytics for many accounts: reach, views, saves, shares, competitors, reports.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://owlstat.io/instagram-mcp/",
+  "repository": {
+    "url": "https://github.com/francescovaglia/owlstat-instagram-tiktok-mcp",
+    "source": "github"
+  },
   "remotes": [
     {
       "type": "streamable-http",
